@@ -1,6 +1,12 @@
 package com.self.practice;
 
 public class BubbleSort {
+    public BubbleSort(String a , String b) {
+    }
+
+    public BubbleSort(String a) {
+     this(a,"");
+    }
 
     public int[] sort(int[] data) {
         for (int i = 0;i < data.length-2;i++){
@@ -16,8 +22,8 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        BubbleSort bubbleSort = new BubbleSort();
-        int[] o = {1,2,3,23,42,76,9,7,48,62};
+        BubbleSort bubbleSort = new BubbleSort("");
+        int[] o = {1,2,2,62,23,42,76,9,7,48};
         int[] sortedData = bubbleSort.sort(o);
         for (int i=0;i< sortedData.length-1;i++) {
             System.out.println(sortedData[i]);
