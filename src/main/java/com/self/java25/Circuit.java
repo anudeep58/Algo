@@ -86,4 +86,49 @@ public class Circuit {
         }
         return result.toString();
     }
+
+    public int hIndex(int[] citations) {
+        Arrays.sort(citations);
+        int h = 0;
+        for(int i = 0; i < citations.length; i++){
+            if(citations[i] >= citations.length - citations[i]){
+                h = citations[i];
+                break;
+            }
+        }
+        return h;
+    }
+
+    public boolean canJump(int[] nums) {
+        if(nums.length ==1){
+            return true;
+        }
+        for(int i  = 0; i <= nums.length-1; i++ )
+        {
+            if(nums[i] == 0 && i < nums.length-1){
+                return false;
+            }
+            if(i != nums.length-1){
+            i = i + nums[i] - 1;}
+        }
+        return true;
+    }
+
+    public boolean canJump1(int[] nums) {
+      int reach = 0;
+      for (int i = 0 ; i< nums.length;i++){
+          if(reach<i){
+              return false;
+          }
+          if(reach < i+nums[i]){
+              reach = i+ nums[i];
+          }
+      }
+      return true;
+    }
+
+    public static void main(String[] args) {
+        Circuit circuit = new Circuit();
+        System.out.println(circuit.canJump1(new int[]{2,5,0,0}));
+    }
 }
