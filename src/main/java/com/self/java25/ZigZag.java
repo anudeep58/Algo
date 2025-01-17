@@ -1,7 +1,6 @@
 package com.self.java25;
 
-import java.util.Arrays;
-import java.util.Locale;
+import java.util.*;
 
 public class ZigZag {
     public String convert(String s, int numRows) {
@@ -62,8 +61,57 @@ public class ZigZag {
         return result.toString();
     }
 
+    public int maxLength(String str) {
+        int maxLen = 0;
+        List<Character> charArray =new ArrayList<>();
+        for (int i = 0; i < str.length()-1 ; i++) {
+            int startPoint = i;
+            if(charArray.size() == str.length()) break;
+            charArray.add(str.charAt(i));
+            for (int j = startPoint+1; j < str.length(); j++) {
+                if(charArray.contains(str.charAt(j))){
+                    if (charArray.size() > maxLen){
+                        maxLen = charArray.size();
+                        charArray.clear();
+                    }
+                    break;
+                }
+                else {
+                    charArray.add(str.charAt(j));
+                    if (charArray.size() > maxLen){
+                        maxLen = charArray.size();
+                    }
+                }
+            }
+        }
+        return maxLen;
+    }
+
+    public int maxLengthSubString(String s){
+        HashSet<Character> hashSet = new HashSet<>();
+        int maxLen =0;
+        int left=0;
+        for (int right = 0; right < s.length(); right++) {
+            if(!hashSet.contains(s.charAt(right))){
+                hashSet.add(s.charAt(right));
+                maxLen = Math.max(maxLen,right-left+1);
+            }
+            else {
+                while (s.charAt(left) != s.charAt(right)){
+                    hashSet.remove(s.charAt(left));
+                    left++;
+                }
+                hashSet.remove(s.charAt(left));
+                left++;
+                hashSet.add(s.charAt(right));
+            }
+        }
+        return maxLen;
+        }
+
+
     public static void main(String[] args) {
         ZigZag zigZag = new ZigZag();
-        System.out.println(zigZag.convert("PAYPALISHIRING",3));
+        System.out.println(zigZag.maxLengthSubString("abcbdcab"));
     }
 }
