@@ -1,5 +1,7 @@
 package com.self.java25;
 
+import javafx.beans.binding.StringBinding;
+
 import java.util.*;
 
 public class ZigZag {
@@ -108,6 +110,30 @@ public class ZigZag {
         }
         return maxLen;
         }
+
+    public int reverse(int x) {
+        int abs = Math.abs(x);
+        int rev = 0;
+        while (abs != 0){
+            int val = abs % 10;
+            if(rev > (Integer.MAX_VALUE - val)%10) {
+                return 0;
+            }
+            rev = rev*10+val;
+            abs = abs/10;
+        }
+        return (x < 0) ? abs*-1: abs;
+    }
+
+    public boolean isAnagram(String s, String t) {
+        char[] sArray= s.toCharArray();
+        Arrays.sort(sArray);
+        char[] tArray = t.toCharArray();
+        Arrays.sort(tArray);
+        return Arrays.equals(sArray,tArray);
+
+
+    }
 
 
     public static void main(String[] args) {
