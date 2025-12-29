@@ -33,9 +33,7 @@ public class PreorderTraversal {
         return max;
     }
 
-    public List<Double> averageOfLevels(TreeNode root) {
 
-    }
 
     public int minDepth(TreeNode root) {
         if (root == null){
